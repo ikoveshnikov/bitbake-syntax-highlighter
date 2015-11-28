@@ -29,6 +29,9 @@
         <item> rm </item>
         <item> ln </item>
         <item> cp </item>
+        <item> for </item>
+        <item> done </item>
+        <item> cat </item>
     </list>
 
     <list name="oe_functions">
