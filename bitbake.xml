@@ -132,7 +132,7 @@
         <DetectChar attribute="Normal Text" context="#stay" char="|" />
         <DetectChar attribute="Normal Text" context="#stay" char=";" />
         <DetectChar attribute="Normal Text" context="#stay" char="," />
-        <RegExpr    attribute="Variable"    context="#stay" String="\$\{@[a-zA-z0-9._\-\(\), &quot;/]+\}" />
+        <RegExpr    attribute="BBFunction"  context="#stay" String="\$\{@[a-zA-z0-9._\-\(\), &quot;/]+\}" />
         <RegExpr    attribute="Variable"    context="#stay" String="\$\{[A-Za-z0-9_-]+\}" />
     </context>
 
