@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+<!--
+  ====================================================================
+  Bitbake syntax highlighting file for the QtCreator
+  ====================================================================
+
+  Author: Ivan Koveshnikov
+-->
+
+<language name="Bitbake" section="Sources"
+          version="1.0"  kateversion="2.4"
+          extensions="*.bb;*.bbappend;*.bbclass;*.inc;*.conf"
+          license="GPL" author="Ivan Koveshnikov">
+
+    <highlighting>
+
+    <list name="keywords">
+        <item> after </item>
+        <item> before </item>
+        <item> python </item>
+        <item> branch </item>
+        <item> bareclone </item>
+        <item> protocol </item>
+        <item> name </item>
+        <item> PARALLEL_MAKE </item>
+    </list>
+
+    <list name="oe_functions">
+        <item> do_fetch </item>
+        <item> do_unpack </item>
+        <item> do_patch </item>
+        <item> do_configure </item>
+        <item> do_configure_prepend </item>
+        <item> do_compile </item>
+        <item> do_compile_prepend </item>
+        <item> do_stage </item>
+        <item> do_install </item>
+        <item> do_package </item>
+        <item> oe_runmake </item>
+        <item> export </item>
+        <item> install </item>
+    </list>
+
+    <list name="dependencies">
+        <item> inherit </item>
+        <item> include </item>
+        <item> require </item>
+        <item> addtask </item>
+        <item> deltask </item>
+        <item> addhandler </item>
+        <item> EXPORT_FUNCTIONS </item>
+    </list>
+
+    <contexts>
+
+    <context name="Normal Text" attribute="Normal Text" lineEndContext="#pop" >
+        <DetectChar                         context="bbComment" char="#" />
+        <keyword attribute="Keyword"        context="#stay"     String="keywords" />
+        <keyword attribute="OEFunction"     context="#stay"     String="oe_functions" />
+        <keyword attribute="Dependency"     context="#stay"     String="dependencies" />
+        <DetectChar attribute="String"      context="bbString"  char="&quot;" />
+        <RegExpr attribute="Variable" context="#stay" String="\$\{[A-Za-z0-9_-]+\}" />
+        <RegExpr attribute="Keyword" context="#stay" String="[A-Z0-9_-]+" />
+    </context>
+
+    <context name="bbString" attribute="String" lineEndContext="#stay" >
+        <keyword    attribute="Keyword"     context="#stay" String="keywords" />
+        <DetectChar attribute="String"      context="#pop"  char="&quot;" />
+        <RegExpr    attribute="Escape"      context="#stay" String="[\\]{1}" />
+        <DetectChar attribute="Normal Text" context="#stay" char="=" />
+        <DetectChar attribute="Normal Text" context="#stay" char="|" />
+        <DetectChar attribute="Normal Text" context="#stay" char=";" />
+        <DetectChar attribute="Normal Text" context="#stay" char="," />
+        <RegExpr    attribute="Variable"    context="#stay" String="\$\{@[a-zA-z0-9._\-\(\), &quot;/]+\}" />
+        <RegExpr    attribute="Variable"    context="#stay" String="\$\{[A-Za-z0-9_-]+\}" />
+    </context>
+
+    <context name="bbComment" attribute="Comment" lineEndContext="#pop" />
+
+    <context name="bbKeyWord" attribute="Keyword" lineEndContext="#pop" >
+    </context>
+
+    <context name="bbVariable" attribute="Variable" lineEndContext="#pop" >
+        <RegExpr    attribute="BBFunction"    context="#stay" String="@[a-zA-Z0-9.]+" />
+        <RegExpr    attribute="String"        context="#stay" String="&quot;[a-zA-Z0-9._-/. ]+&quot;" />
+        <DetectChar attribute="Variable"      context="#pop"  char="}" />
+    </context>
+
+    <context name="bbError" attribute="dsError" lineEndContext="#pop" />
+
+    </contexts>
+
+    <itemDatas>
+    <!--
+        dsNormal, used for normal text.
+        dsKeyword, used for keywords.
+        dsDataType, used for data types.
+        dsDecVal, used for decimal values.
+        dsBaseN, used for values with a base other than 10.
+        dsFloat, used for float values.
+        dsChar, used for a character.
+        dsString, used for strings.
+        dsComment, used for comments.
+        dsOthers, used for ‘other’ things.
+        dsAlert, used for warning messages.
+        dsFunction, used for function calls.
+        dsRegionMarker, used for region markers.
+        dsError, used for error highlighting and wrong syntax.
+    -->
+        <itemData name="Normal Text"    defStyleNum="dsNormal"      spellChecking="false" />
+        <itemData name="String"         defStyleNum="dsString"      spellChecking="true" />
+        <itemData name="Keyword"        defStyleNum="dsKeyword"     spellChecking="false" />
+        <itemData name="Condition"      defStyleNum="dsDataType"    spellChecking="false" />
+        <itemData name="Function"       defStyleNum="dsFunction"    spellChecking="false" />
+        <itemData name="Variable"       defStyleNum="dsOthers"      spellChecking="false" color="darkred" />
+        <itemData name="Comment"        defStyleNum="dsComment"     spellChecking="true" />
+        <itemData name="Dependency"     defStyleNum="dsDataType"    spellChecking="false"/>
+        <itemData name="BBFunction"     defStyleNum="dsOthers"      spellChecking="false" color="darkblue" />
+        <itemData name="OEFunction"     defStyleNum="dsBaseN"       spellChecking="false" />
+        <itemData name="Escape"         defStyleNum="dsOthers"      spellChecking="false" color="grey" />
+
+
+    </itemDatas>
+
+    </highlighting>
+
+    <general>
+        <comments>
+            <comment name="singleLine" start="#"/>
+        </comments>
+    </general>
+</language>
+
